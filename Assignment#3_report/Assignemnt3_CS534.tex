@@ -31,18 +31,22 @@ The main objective of this assignment is to implement $Kmeans$ clustering algori
 
 \section{K means Initialization }
 In this section, we implemented  a $Kmeans$ algorithm with $k = 5$ on the provided $data1$ with randomly initialized cluster centers for $200$ times. Each time, we randomly picked five points in the data to serve as the initial centers and run $kmeans$ algorithm to convergence. We repeated this for $200$ times and recorded the centers that are found.\\
-$Figure~\ref{fig:fig_Kmeans_with_random_initialization}$  
-Create a single figure in which the original data points are plotted in one color and the found cluster centers in the $200$ runs in a different color. Make sure that the cluster centers are clearly visible from the other points when printed in black and white.\\
- Report the minimum, maximum, mean and standard deviation of the within-cluster sum of squared distances for the clustering found by your algorithm in the $200$ random runs. Please comment on your results regard the sensitivity of the $kmeans$ algorithm to the initialization.
-
+$Figure~\ref{fig:fig_Kmeans_with_random_initialization}$  represents the recorded cluster centers over $200$ runs, the original data points are plotted in blue color and the found cluster centers in the $200$ runs in  cyan color. \\
 \begin{figure}[h]
 \begin{center}
 \includegraphics[width=11cm]{Fig/fig_Kmeans_with_random_initialization.eps}
  \end{center}
-\caption{\small{$Kmenas$ clustering results over 200 runs.The original data points are represented in blue color and the found cluster centers are represented in cyan color}} 
+\caption{\small{$Kmeans$ clustering results over 200 runs.The original data points are represented in blue color and the found cluster centers are represented in cyan color}} 
 \label{fig:fig_Kmeans_with_random_initialization}
 \end{figure}
 
+\begin{figure}[h]
+\begin{center}
+\includegraphics[width=16cm]{Fig/fig_Within_cluster_sum_of_squared_distances_200runs.eps}
+ \end{center}
+% \caption{\small{$within$ Within_cluster_sum_of squared distances results for 200 runs.}} 
+\label{fig:fig_Within_cluster_sum_of_squared_distances_200runs}
+\end{figure}
 
 \section{Finding K }
 Identifying how many clusters are in the data is a very challenging task. In this task, you will try out a commonly used heuristic on the provided $data2$. We will consider a variety of different k values $\left(k = 2, 3, ..., 15\right)$. For each k value, you will run your kmeans algorithm with 10 different random initializations and record the lowest within-cluster sum of squared distances obtained for that $k$ value. You will then plot them as a function of $k$.\\
@@ -51,7 +55,7 @@ b. A commonly used heuristic is to look for the “knee” in this curve, which 
 
 \begin{figure}[h]
 \begin{center}
-\includegraphics[width=11cm]{Fig/vote_perceptroncompareW1.png}
+\includegraphics[width=11cm]{Fig/fig_Kmeans_with_random_initialization.eps}
  \end{center}
 \caption{\small{Compare the linear decision boundary of voted perceptron with averaged weights and voted perceptron}} 
 \label{fig:vote_perceptroncompareW1}
@@ -65,7 +69,7 @@ The results should be different with and without normalization. Note that this s
 
 \begin{figure}[h]
 \begin{center}
-\includegraphics[width=11cm]{Fig/vote_perceptroncompareW1.png}
+\includegraphics[width=11cm]{Fig/fig_Kmeans_with_random_initialization.eps}
  \end{center}
 \caption{\small{Compare the linear decision boundary of voted perceptron with averaged weights and voted perceptron}} 
 \label{fig:vote_perceptroncompareW1}
