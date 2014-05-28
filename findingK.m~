@@ -7,6 +7,8 @@ startTime=tic;
 data2 = csvread('data2.csv');
 data3 = csvread('data3.csv');
 
+figure(1);
+plot(data2(:,1),data2(:,2),'ob');
 % figure(2);
 % plot(data2(:,1),data2(:,2),'b');
 % figure(3);
@@ -24,10 +26,6 @@ run_K_WithinClusterSumDistance = [];
 
 
 for K = minK:maxK,
-    
-    
-    figure(K-minK+1);
-    plot(data2(:,1),data2(:,2),'ob');
     
     numberOfTrainingData = size(data2,1);
     numberOfFeatureDimensions = size(data2,2);
