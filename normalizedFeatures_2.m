@@ -3,23 +3,24 @@ clear all;
 close all;
 startTime=tic;
 
-data1 = csvread('data1.csv');
-data2 = csvread('data2.csv');
 data3 = csvread('data3.csv');
 
-figure(1);
-plot(data1(:,1),data1(:,2),'ob');
-% figure(2);
-% plot(data2(:,1),data2(:,2),'b');
-% figure(3);
-% plot(data3(:,1),data3(:,2),'b');
 
 % number of clusters
 K = 2;
 
 
-numberOfTrainingData = size(data1,1);
-numberOfFeatureDimensions = size(data1,2);
+numberOfTrainingData = size(data3,1);
+numberOfFeatureDimensions = size(data3,2);
+
+% Normalize the data set
+for counterFeatures=1: numberOfFeatureDimensions  
+  data3Normalized(:,counterFeatures)= (data3(:,counterFeatures)-mean(data3(:,counterFeatures)))/std(data3(:,counterFeatures)) ;
+end
+
+figure(1);
+plot(data3Normalized(:,1),data3Normalized(:,2),'ob');
+
 
 for index=1:200,
     
@@ -30,10 +31,10 @@ for index=1:200,
     randCenterIndices = randperm(numberOfTrainingData, K);
     
     
-    clusterCenters = data1(randCenterIndices,:);
+    clusterCenters = data3Normalized(randCenterIndices,:);
     
-    data1Label = zeros(numberOfTrainingData, 1);
-    data1DistanceFromClusterCenter = Inf(numberOfTrainingData, K);
+    data3NormalizedLabel = zeros(numberOfTrainingData, 1);
+    data3NormalizedDistanceFromClusterCenter = Inf(numberOfTrainingData, K);
     
     % Assign each data point to a cluster: label each data point with a cluster
     % number
@@ -46,15 +47,15 @@ for index=1:200,
         
         for i = 1:numberOfTrainingData,
             for j = 1:K,
-                data1DistanceFromClusterCenter(i,j) = EuclideanDistance(data1(i,:),clusterCenters(j,:));
+                data3NormalizedDistanceFromClusterCenter(i,j) = EuclideanDistance(data3Normalized(i,:),clusterCenters(j,:));
             end
             % check to see if any data point's label is updated
-            [~, newLabel] = min(data1DistanceFromClusterCenter(i,:));
-            if  data1Label(i) ~= newLabel,
+            [~, newLabel] = min(data3NormalizedDistanceFromClusterCenter(i,:));
+            if  data3NormalizedLabel(i) ~= newLabel,
                 changeInLabelsFlag = 1;
             end
             % update label maybe?
-            [~, data1Label(i)] = min(data1DistanceFromClusterCenter(i,:));
+            [~, data3NormalizedLabel(i)] = min(data3NormalizedDistanceFromClusterCenter(i,:));
             
         end
         
@@ -65,19 +66,19 @@ for index=1:200,
         
         for i = 1:K,
             
-            Mu(i,:) = mean(data1(find(data1Label == i),:));
+            Mu(i,:) = mean(data3Normalized(find(data3NormalizedLabel == i),:));
             
             
-            minDiff = EuclideanDistance(data1(1,:), Mu(i,:));
+            minDiff = EuclideanDistance(data3Normalized(1,:), Mu(i,:));
             
             for j = 2:numberOfTrainingData
-                if minDiff > EuclideanDistance(data1(j,:), Mu(i,:)),
-                    minDiff = EuclideanDistance(data1(j,:), Mu(i,:));
+                if minDiff > EuclideanDistance(data3Normalized(j,:), Mu(i,:)),
+                    minDiff = EuclideanDistance(data3Normalized(j,:), Mu(i,:));
                     closestDataPointToMuIndex = j;
                 end
             end
             
-%             clusterCenters(i,:) = data1(closestDataPointToMuIndex,:);
+%             clusterCenters(i,:) = data3Normalized(closestDataPointToMuIndex,:);
             clusterCenters(i,:) = Mu(i,:);
             % Part 1. b.
             
@@ -101,8 +102,8 @@ for index=1:200,
     % calculate withing cluster sum of distances
     for i = 1:K,
         
-        %      clusterI = zeros(size((data1(find(data1Label == i),:))));
-        clusterI = data1(find(data1Label == i),:);
+        %      clusterI = zeros(size((data3Normalized(find(data3NormalizedLabel == i),:))));
+        clusterI = data3Normalized(find(data3NormalizedLabel == i),:);
         for j = 1:size(clusterI,1),
             withinClusterSum(i) = withinClusterSum(i) + (EuclideanDistance(Mu(i,:), clusterI(j,:)))^2;
         end
