@@ -5,7 +5,7 @@ startTime=tic;
 
 % data1 = csvread('data1.csv');
 data2 = csvread('data2.csv');
-data3 = csvread('data3.csv');
+% data3 = csvread('data3.csv');
 
 % figure(2);
 % plot(data2(:,1),data2(:,2),'b');

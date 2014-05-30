@@ -36,11 +36,17 @@ $Figure~\ref{fig:fig_Kmeans_with_random_initialization}$  represents the recorde
 \begin{center}
 \includegraphics[width=11cm]{Fig/fig_Kmeans_with_random_initialization.eps}
  \end{center}
-\caption{\small{$Kmenas$ clustering results over 200 runs.The original data points are represented in blue color and the found cluster centers are represented in cyan color}} 
+\caption{\small{$Kmeans$ clustering results over 200 runs.The original data points are represented in blue color and the found cluster centers are represented in cyan color}} 
 \label{fig:fig_Kmeans_with_random_initialization}
 \end{figure}
 
-
+\begin{figure}[h]
+\begin{center}
+\includegraphics[width=16cm]{Fig/fig_Within_cluster_sum_of_squared_distances_200runs.eps}
+ \end{center}
+% \caption{\small{$within$ Within_cluster_sum_of squared distances results for 200 runs.}} 
+\label{fig:fig_Within_cluster_sum_of_squared_distances_200runs}
+\end{figure}
 
 \section{Finding K }
 Identifying how many clusters are in the data is a very challenging task. In this task, you will try out a commonly used heuristic on the provided $data2$. We will consider a variety of different k values $\left(k = 2, 3, ..., 15\right)$. For each k value, you will run your kmeans algorithm with 10 different random initializations and record the lowest within-cluster sum of squared distances obtained for that $k$ value. You will then plot them as a function of $k$.\\
@@ -60,6 +66,18 @@ Kmeans clustering and many other clustering methods are distance based. Distance
 a. Apply your implemented kmeans algorithm with k = 2 for 200 different random initializations. Record all the cluster centers that are found in these 200 runs. Plot the original data in one color and plot the cluster centers in the same figure using a different color( and shape if that helps to differentiate them).
 b. Now normalize the features of the given data set. That is, first center the data to have zero mean(by subtracting the mean from the data), then rescale each feature dimension to have unit variance. Redo part a with this normalized dataset. Report the difference that you observe.
 The results should be different with and without normalization. Note that this should not be taken to mean that data always need to be normalized. In some cases, the difference in scale can be truly meaningful and normalization could remove such useful information. In other cases, it is crucial to properly scale the data. The decision should be made in a case-by-case fashion.
+$x_i iid N(\mu, \delat^2$
+\begin{equation}
+ Normalized X_i =\frac{X_i- \mu}{std(x_i)}
+\end{equation}
+
+\begin{figure}[h]
+\begin{center}
+\includegraphics[width=11cm]{Fig/fig_Kmeans_with_random_initialization.eps}
+ \end{center}
+\caption{\small{Compare the linear decision boundary of voted perceptron with averaged weights and voted perceptron}} 
+\label{fig:vote_perceptroncompareW1}
+\end{figure}
 
 \begin{figure}[h]
 \begin{center}
