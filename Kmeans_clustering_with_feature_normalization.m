@@ -1,3 +1,8 @@
+% K-means clustering algorithm
+% Authors: Amir Azarbakht and Mandana Hamidi
+% azarbaam@eecs.oregonstate.edu
+% 2014-05-30
+
 clc;
 clear all;
 close all;
